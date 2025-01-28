@@ -2,6 +2,12 @@ class StringCalculator
 	def add(numbers)
 		return 0 if numbers.empty?
 
-		numbers.gsub("\n", ",").split(',').map(&:to_i).sum
+		if numbers.start_with?("//")
+		    delimiter, numbers = numbers.split("\n", 2)
+		    delimiter = delimiter[2..]
+		else
+			numbers.gsub("\n", ",").split(',').map(&:to_i).sum
+		end
+
 	end
 end
