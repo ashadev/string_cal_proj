@@ -5,5 +5,25 @@ RSpec.describe StringCalculator do
 		it 'return 0 for empty string' do
 			expect(StringCalculator.new.add("")).to eq(0)
 		end
+
+		it 'return 0 for string having nil' do
+			expect(StringCalculator.new.add("nil")).to eq(0)
+		end
+
+		context 'when there is one number' do
+			it 'return that number itself' do
+				expect(StringCalculator.new.add("1")).to eq(1)
+			end
+		end
+
+		context 'when comma is a delimiter' do
+			it 'returns sum of two numbers' do
+				expect(StringCalculator.new.add("1,2")).to eq(3)
+			end
+
+			it 'returns sum of multiple numbers' do
+				expect(StringCalculator.new.add("1,2,3,4,5")).to eq(15)
+			end
+		end
 	end
 end
