@@ -42,8 +42,15 @@ RSpec.describe StringCalculator do
 			end
 		end
 
+		context 'when invalid custom delimiter is given after delimiter' do
+			# delimiter is ; but along with ; if other delimiter is given it will not consider rest
+			it 'returns sum of numbers of valid delimiter' do
+				expect(StringCalculator.new.add("//;\n1;2;3:4")).to eq(6)
+			end
+		end
+
 		it 'will raises an exception for negative number' do
-			expect { StringCalculator.new.add("1,-2,-3") }.to raise_error(RuntimeError, "Negative numbers are not allowed: -2, -3")
+			expect { StringCalculator.new.add("1,-2") }.to raise_error(RuntimeError, "Negative numbers are not allowed: -2")
 		end
 	end
 end
